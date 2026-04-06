@@ -7,8 +7,8 @@
 ## Purpose
 
 This project focuses on system design around AI agents and deploys it with:
-	•	Backend: FastAPI service exposing the agent over HTTP
-	•	Frontend: React + Vite application with a chat interface
+- Backend: FastAPI service exposing the agent over HTTP
+- Frontend: React + Vite application with a chat interface
 
 ---
 
