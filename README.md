@@ -69,6 +69,7 @@ This project highlights:
   Building scalable interfaces around agent systems
 
 **Demonstration**: [Watch video](demo.mov)
+![demo.gif](demo.gif)
 
 ---
 
