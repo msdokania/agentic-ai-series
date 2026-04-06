@@ -10,11 +10,11 @@ A travel planning agent built on the same pattern as Project 1. What changed is 
 
 The UI is Gradio — deliberately minimal.
 Goal:
-	•	Demonstrate how the same agent loop scales to a practical use case
-	•	Show how multiple tools interact in a single reasoning flow
-	•	Explore prompt engineering for reliable tool usage
-	•	Handle structured and unstructured outputs
-	•	Work with external data sources (APIs + web search)
+- Demonstrate how the same agent loop scales to a practical use case
+- Show how multiple tools interact in a single reasoning flow
+- Explore prompt engineering for reliable tool usage
+- Handle structured and unstructured outputs
+- Work with external data sources (APIs + web search)
 
 ---
 
