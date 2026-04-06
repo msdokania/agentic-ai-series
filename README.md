@@ -31,7 +31,7 @@ Code across all projects is heavily commented to make behavior explicit and easi
 ## Projects
 
 ### [`01-utility-agent/`](./utility-agent/)
-**Core agent loop from scratch**
+**Core agent loop from scratch**:
 A minimal implementation of an AI agent in a single file with no external frameworks. It demonstrates the ReAct pattern using:
  Prompt → LLM call → tool invocation → observation → repeat loop
 
@@ -42,7 +42,7 @@ This project focuses on understanding:
 - How responses are structured and interpreted
 
 ### [`02-travel-agent-gradio/`](./travel-agent-gradio/)
-**Agent with real-world tools and interaction**
+**Agent with real-world tools and interaction**:
 Extends the basic loop into a practical travel planning assistant. Introduces:
 - Multiple tools (web search, weather, itinerary planning, budgeting)
 - Multi-turn conversation handling
@@ -53,7 +53,7 @@ Extends the basic loop into a practical travel planning assistant. Introduces:
 - Basic UI using Gradio for interaction
 
 ### [`03-travel-agent-fullstack/`](./travel-agent-full/)
-**Separation of backend and frontend**
+**Separation of backend and frontend**:
 The same agent functionality is implemented with a more production-like architecture:
 - Backend: FastAPI handling agent execution
 - Frontend: React + Vite UI
