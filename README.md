@@ -48,25 +48,25 @@ Extends the basic loop into a practical travel planning assistant. Introduces:
 - Multi-turn conversation handling
 - Prompt engineering for more reliable outputs
 - Structured vs unstructured responses
--> Handling context across turns
--> Temperature and its effect on output variability (Temperature slider)
--> Basic UI using Gradio for interaction
+- Handling context across turns
+- Temperature and its effect on output variability (Temperature slider)
+- Basic UI using Gradio for interaction
 
 ### [`03-travel-agent-fullstack/`](./travel-agent-full/)
 **Separation of backend and frontend**
 The same agent functionality is implemented with a more production-like architecture:
-	•	Backend: FastAPI handling agent execution
-	•	Frontend: React + Vite UI
-	•	Clear separation of concerns between:
-        •	agent logic
-        •	API layer
-        •	user interface
+- Backend: FastAPI handling agent execution
+- Frontend: React + Vite UI
+- Clear separation of concerns between:
+	- agent logic
+	- API layer
+	- user interface
 
 This project highlights:
-	•	System design considerations for deploying agents
-	•	How to structure agent services in real applications
-	•	Decoupling UI from inference logic
-	•	Building scalable interfaces around agent systems
+  System design considerations for deploying agents
+  How to structure agent services in real applications
+  Decoupling UI from inference logic
+  Building scalable interfaces around agent systems
 
 ---
 
