@@ -1,0 +1,15 @@
+*.local
+
+
+# Editor directories and files
+.vscode/*
+!.vscode/
+!.vscode/extensions.json
+.DS_Store
+
+__pycache__/
+Archive/
+venv/
+**/travel-venv/
+**/utilities-venv/
+.env
