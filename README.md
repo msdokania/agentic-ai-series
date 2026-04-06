@@ -68,6 +68,8 @@ This project highlights:
   Decoupling UI from inference logic
   Building scalable interfaces around agent systems
 
+**Demonstration**: [Watch video](demo.mov)
+
 ---
 
 ## What's coming
