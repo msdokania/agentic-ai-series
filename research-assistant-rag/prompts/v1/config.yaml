@@ -1,0 +1,81 @@
+# ════════════════════════════════════════════════════════════
+# Prompt Configuration — Version 1 (Naive RAG Baseline)
+# ════════════════════════════════════════════════════════════
+# 
+# This is the baseline configuration for Part A.
+# It uses simple, direct prompting with no special citation
+# enforcement or structured output requirements.
+#
+# Purpose: Establish a baseline to measure improvements against.
+# Expected weaknesses:
+#   - May hallucinate when context is insufficient
+#   - Citations will be inconsistent or missing
+#   - No confidence scoring
+#   - Struggles with multi-hop questions
+# ════════════════════════════════════════════════════════════
+
+version: "v1"
+description: "Naive RAG baseline — simple retrieval + generation with basic citation request"
+
+# ── System Prompt ───────────────────────────────────────────
+# Defines the assistant's role and behavior.
+# In v1, we keep it simple and observe what breaks.
+system_prompt: |
+  You are a research assistant that answers questions based on academic papers 
+  and technical documents. Your role is to provide accurate, well-reasoned 
+  answers grounded in the provided source material.
+  
+  Rules:
+  1. Answer based ONLY on the provided context passages. Do not use outside knowledge.
+  2. If the context does not contain enough information to answer the question, 
+     clearly state that you cannot answer based on the available sources.
+  3. When referencing information from the context, indicate which source it came from 
+     using the format [Source: document_name, page X].
+  4. Be precise and concise. Avoid speculation.
+
+# ── Retrieval Template ──────────────────────────────────────
+# This template is filled with the retrieved context chunks and
+# the user's question before being sent to the LLM.
+retrieval_template: |
+  Below are relevant passages retrieved from the research document corpus.
+  Each passage includes its source metadata.
+  
+  === RETRIEVED CONTEXT ===
+  {context}
+  === END CONTEXT ===
+  
+  Based on the context above, please answer the following question:
+  
+  Question: {question}
+  
+  Provide your answer with source citations.
+
+# ── Fallback when no relevant context is found ──────────────
+no_context_response: |
+  I don't have enough information in the provided documents to answer this 
+  question. The retrieved passages don't appear to contain relevant information 
+  about this topic. You may want to try rephrasing the question or uploading 
+  additional documents.
+
+# ── Model Parameters ────────────────────────────────────────
+temperature: 0.1          # Low temperature for factual, consistent answers
+model: "gpt-4o-mini"      # Fast and cheap for development iteration
+max_output_tokens: 1024   # Enough for detailed answers with citations
+
+# ── Retrieval Parameters ────────────────────────────────────
+top_k: 5                  # Number of chunks to retrieve
+chunk_size: 500           # Tokens per chunk
+chunk_overlap: 50         # Overlap between consecutive chunks
+
+# ── Embedding ───────────────────────────────────────────────
+embedding_model: "text-embedding-3-small"
+
+# ── Notes ───────────────────────────────────────────────────
+notes: |
+  Baseline configuration. No structured output enforcement, no confidence 
+  scoring, basic citation request in system prompt. This version is intended 
+  to establish performance baselines — we expect it to struggle with:
+  - Multi-hop questions requiring synthesis across chunks
+  - Questions about tables/structured data (fixed-size chunking breaks tables)
+  - Hallucination when context is insufficient but topically adjacent
+  - Inconsistent citation format

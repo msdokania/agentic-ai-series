@@ -1,0 +1,50 @@
+# ════════════════════════════════════════════════════
+# Phase 4: Research Assistant — Deep RAG
+# Part A dependencies (naive baseline)
+# ════════════════════════════════════════════════════
+
+# Core
+python-dotenv>=1.0.0
+pydantic>=2.0.0
+pydantic-settings>=2.0.0
+
+# LLM & Embeddings
+openai>=1.30.0
+
+# Vector Store
+chromadb>=0.5.0
+
+# PDF Processing
+PyMuPDF>=1.24.0          # imported as 'fitz'
+
+# API
+fastapi>=0.111.0
+uvicorn[standard]>=0.30.0
+python-multipart>=0.0.9  # for file uploads
+
+# Config
+pyyaml>=6.0.0
+
+# Utilities
+rich>=13.0.0             # pretty console output
+tiktoken>=0.7.0          # token counting for chunking
+
+# ════════════════════════════════════════════════════
+# Part B: Advanced Retrieval
+# ════════════════════════════════════════════════════
+langchain>=0.2.0
+langchain-openai>=0.1.0
+langchain-community>=0.2.0
+langchain-chroma>=0.1.0
+rank-bm25>=0.2.2
+sentence-transformers>=3.0.0    # for cross-encoder reranking
+
+# ════════════════════════════════════════════════════
+# Part C additions (uncomment when ready)
+# ════════════════════════════════════════════════════
+# ragas>=0.1.0
+
+# ════════════════════════════════════════════════════
+# Part D additions (uncomment when ready)
+# ════════════════════════════════════════════════════
+# langgraph>=0.1.0

@@ -1,0 +1,104 @@
+# ════════════════════════════════════════════════════════════
+# Prompt Configuration — Version 2 (Advanced Retrieval)
+# ════════════════════════════════════════════════════════════
+# 
+# Improvements over v1:
+# 1. Strict citation enforcement — every claim must cite a source
+# 2. Confidence scoring (1-5) with defined rubric
+# 3. Explicit handling of conflicting information
+# 4. Structured output format for reliable parsing
+# 5. Better unanswerable question handling
+# ════════════════════════════════════════════════════════════
+
+version: "v2"
+description: "Advanced retrieval — strict citations, confidence scoring, structured output"
+
+system_prompt: |
+  You are a precise research assistant that answers questions based on academic 
+  papers and technical documents. You must be rigorous about grounding every 
+  claim in the provided sources.
+  
+  STRICT RULES:
+  1. ONLY use information from the provided context passages. Never use outside knowledge.
+  2. EVERY factual claim in your answer MUST include a citation in the format:
+     [Source: document_name, Page X]
+  3. If the context does not contain sufficient information, respond with:
+     "INSUFFICIENT_CONTEXT: [explain what information is missing]"
+  4. If sources contain CONFLICTING information, explicitly note the conflict:
+     "CONFLICT: Source A says X (Page N), while Source B says Y (Page M)."
+  5. Do NOT speculate, infer, or fill gaps with assumptions.
+  
+  OUTPUT FORMAT:
+  Structure your response as follows:
+  
+  **Answer:**
+  [Your detailed answer with inline citations]
+  
+  **Confidence:** [1-5]
+  - 5: Answer is directly and clearly stated in the sources
+  - 4: Answer is well-supported but requires minor interpretation
+  - 3: Answer is partially supported; some aspects lack evidence
+  - 2: Answer is weakly supported; significant inference required
+  - 1: Answer is speculative; very little direct evidence
+  
+  **Key Sources:**
+  - [Source: document, Page X] — [brief description of what this source contributed]
+  
+  **Limitations:**
+  [What the sources don't cover that would strengthen the answer]
+
+retrieval_template: |
+  Below are the most relevant passages retrieved from the research corpus.
+  Each passage includes its source document and page number for citation.
+  
+  Relevance scores are provided — higher scores indicate stronger semantic 
+  match to the question, but low-scoring passages may still contain 
+  important keyword matches or supporting details.
+  
+  === RETRIEVED PASSAGES ===
+  {context}
+  === END PASSAGES ===
+  
+  QUESTION: {question}
+  
+  Provide your response following the structured format described in your instructions.
+  Remember: every claim needs a citation, and state your confidence level.
+
+no_context_response: |
+  INSUFFICIENT_CONTEXT: The retrieved passages do not contain information 
+  relevant to this question. This could mean:
+  - The topic is not covered in the ingested document corpus
+  - The question uses different terminology than the source documents
+  - The relevant information exists but was not retrieved (retrieval gap)
+  
+  **Confidence:** 1
+  **Suggestion:** Try rephrasing the question or uploading additional documents.
+
+# ── Model Parameters ────────────────────────────────────────
+temperature: 0.05         # Even lower than v1 — maximum consistency
+model: "gpt-4o-mini"
+max_output_tokens: 1500   # More room for structured output with citations
+
+# ── Retrieval Parameters ────────────────────────────────────
+top_k: 5
+chunk_size: 500
+chunk_overlap: 50
+
+# ── Embedding ───────────────────────────────────────────────
+embedding_model: "text-embedding-3-small"
+
+notes: |
+  Key changes from v1:
+  - Temperature reduced from 0.1 to 0.05 for more deterministic output
+  - Max tokens increased from 1024 to 1500 for structured format
+  - System prompt now enforces citation on EVERY claim (not just requested)
+  - Added confidence scoring with a defined 1-5 rubric
+  - Added explicit conflict detection instruction
+  - Added structured output format (Answer/Confidence/Sources/Limitations)
+  - Improved INSUFFICIENT_CONTEXT response with actionable suggestions
+  
+  Expected improvements:
+  - More consistent citation format (structured enforcement)
+  - Fewer hallucinations (explicit "don't speculate" instruction)
+  - Better handling of unanswerable questions (defined response format)
+  - Machine-parseable confidence scores for evaluation

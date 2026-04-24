@@ -1,0 +1,31 @@
+# Environment
+.env
+venv/
+__pycache__/
+*.pyc
+
+# ChromaDB persistent storage
+chroma_data/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp
+*.tmp
+temp/
+
+# Node (frontend)
+node_modules/
+dist/
+
+# Data (papers are not committed — users bring their own)
+data/papers/*.pdf
+
+# Evaluation results (large JSON files)
+# Keep the reports (markdown), exclude raw results
+evaluation/results/*.json
