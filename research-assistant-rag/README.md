@@ -12,6 +12,10 @@ Most RAG tutorials show how to chain together a vector store and an LLM. What pr
 
 This project builds from a naive baseline, documenting exactly where and why it breaks, then fixes each failure mode with progressively better techniques. Every change is measured.
 
+## Application screenshot
+
+![Application screenshot](./Outputs/RAG.png)
+
 ---
 
 ## Parts
@@ -288,10 +292,6 @@ data/
 ```bash
 python3 -m src.ingestion.ingest --input-dir data/papers/
 ```
-
-## Application screenshot
-
-![Application screenshot](./Outputs/RAG.png)
 
 <!-- ========================================================================= -->
 
