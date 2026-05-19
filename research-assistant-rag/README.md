@@ -46,8 +46,6 @@ pip install -r requirements.txt
 # Start Chroma (vector store) — runs embedded, no Docker needed for Part A
 
 # Set environment variables
-cp .env.example .env
-# Add your OPENAI_API_KEY to .env
 
 # Ingest sample papers
 python3 -m src.ingestion.ingest --input-dir data/papers/
@@ -290,6 +288,10 @@ data/
 ```bash
 python3 -m src.ingestion.ingest --input-dir data/papers/
 ```
+
+## Application screenshot
+
+![Application screenshot](./Outputs/RAG.png)
 
 <!-- ========================================================================= -->
 
